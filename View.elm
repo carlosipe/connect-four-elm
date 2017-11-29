@@ -1,10 +1,24 @@
 module View exposing (view)
 
-import Model exposing (Model)
+import Html
+import Model exposing (..)
 import Msg exposing (Msg)
-import Html exposing (..)
+import Styles exposing (..)
+import Element exposing (column)
+import Element.Attributes exposing (padding)
 
 
-view : Model -> Html Msg
+-- partials
+
+import HeaderView
+import BoardView
+
+
+view : Model -> Html.Html Msg
 view model =
-    text "hey"
+    Element.layout stylesheet <|
+        column NoStyle
+            [ padding 10 ]
+            [ HeaderView.view model.nextPlayer
+            , BoardView.view model
+            ]

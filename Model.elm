@@ -19,9 +19,11 @@ type Player
 
 
 type alias Board =
-    Int
+    { width : Int
+    , height : Int
+    }
 
 
 initialBoard : Board
 initialBoard =
-    10
+    Board 7 7
