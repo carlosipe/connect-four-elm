@@ -1,20 +1,42 @@
 module Main exposing (..)
 
-import Html exposing (program, Html, text)
+import Html exposing (..)
 
 
 type alias Model =
+    { nextPlayer : Player
+    , winner : Maybe Player
+    , board : Board
+    }
+
+
+initialModel : Model
+initialModel =
+    Model Red Nothing initialBoard
+
+
+type Player
+    = Red
+    | Yellow
+
+
+type alias Board =
     Int
+
+
+initialBoard : Board
+initialBoard =
+    10
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( 1, Cmd.none )
+    ( initialModel, Cmd.none )
 
 
 view : Model -> Html Msg
 view model =
-    text "Hello"
+    text "hey"
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
