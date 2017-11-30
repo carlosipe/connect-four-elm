@@ -5,6 +5,7 @@ import Style exposing (..)
 import Style.Color as Color
 import Style.Border as Border
 import Model exposing (..)
+import Player exposing (..)
 
 
 type Styles
@@ -14,7 +15,7 @@ type Styles
 
 
 type FieldVariations
-    = NextPlayer Player
+    = CurrentPlayer Player
     | Content (Maybe Player)
 
 
@@ -23,10 +24,10 @@ stylesheet =
         [ style BoardField
             [ Border.rounded 50
             , Color.background white
-            , variation (NextPlayer Player1)
+            , variation (CurrentPlayer Player1)
                 [ hover [ Color.background yellow ]
                 ]
-            , variation (NextPlayer Player2)
+            , variation (CurrentPlayer Player2)
                 [ hover [ Color.background red ]
                 ]
             , variation (Content (Just Player2)) [ Color.background red ]

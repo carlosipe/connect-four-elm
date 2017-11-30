@@ -1,29 +1,21 @@
 module Model exposing (..)
 
+import Board exposing (Board)
+import Player exposing (..)
+
 
 type alias Model =
-    { nextPlayer : Player
-    , winner : Maybe Player
+    { currentPlayer : Player
+    , gameState : GameState
     , board : Board
     }
 
 
+type GameState
+    = Won Player
+    | Playing
+
+
 initialModel : Model
 initialModel =
-    Model Player2 Nothing initialBoard
-
-
-type Player
-    = Player2
-    | Player1
-
-
-type alias Board =
-    { width : Int
-    , height : Int
-    }
-
-
-initialBoard : Board
-initialBoard =
-    Board 7 7
+    Model Player2 Playing Board.initialBoard

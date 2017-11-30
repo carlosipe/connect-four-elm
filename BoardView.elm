@@ -4,41 +4,36 @@ import Element exposing (..)
 import Element.Attributes exposing (..)
 import Styles exposing (..)
 import Model exposing (..)
+import Element.Events exposing (onClick)
+import Msg exposing (Msg)
+import Board exposing (drawableBoard)
+import Player exposing (..)
 
 
--- Change this by the real board
-
-
-drawableBoard =
-    [ [ Nothing, Nothing, Nothing ]
-    , [ Nothing, Nothing, Just Player1 ]
-    , [ Just Player2, Just Player2, Just Player1 ]
-    ]
-
-
-view : Model -> Element Styles FieldVariations msg
+view : Model -> Element Styles FieldVariations Msg
 view model =
     row BoardStyle
         []
-        (drawableBoard
-            |> List.map
-                (\boardColumn ->
+        (Board.drawableBoard model.board
+            |> List.indexedMap
+                (\columnNumber boardColumn ->
                     column NoStyle
-                        []
+                        [ onClick (Msg.Play (columnNumber + 1))
+                        ]
                         (boardColumn
                             |> List.map
                                 (\fieldContent ->
-                                    boardField fieldContent model.nextPlayer
+                                    boardField fieldContent model.currentPlayer
                                 )
                         )
                 )
         )
 
 
-boardField : Maybe Player -> Player -> Element Styles FieldVariations msg
-boardField fieldContent nextPlayer =
+boardField : Maybe Player -> Player -> Element Styles FieldVariations Msg
+boardField fieldContent currentPlayer =
     el BoardField
-        [ (vary (NextPlayer nextPlayer) True)
+        [ (vary (CurrentPlayer currentPlayer) True)
         , (vary (Content fieldContent) True)
         , width (px 20)
         , height (px 20)

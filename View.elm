@@ -19,6 +19,6 @@ view model =
     Element.layout stylesheet <|
         column NoStyle
             [ padding 10 ]
-            [ HeaderView.view model.nextPlayer
+            [ HeaderView.view model
             , BoardView.view model
             ]
