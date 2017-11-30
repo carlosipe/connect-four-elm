@@ -14,8 +14,8 @@ view nextPlayer =
 playerColor : Player -> String
 playerColor player =
     case player of
-        Yellow ->
-            "Yellow"
+        Player1 ->
+            "Player 1"
 
-        Red ->
-            "Red"
+        Player2 ->
+            "Player 2"

@@ -23,14 +23,14 @@ stylesheet =
         [ style BoardField
             [ Border.rounded 50
             , Color.background white
-            , variation (NextPlayer Yellow)
+            , variation (NextPlayer Player1)
                 [ hover [ Color.background yellow ]
                 ]
-            , variation (NextPlayer Red)
+            , variation (NextPlayer Player2)
                 [ hover [ Color.background red ]
                 ]
-            , variation (Content (Just Red)) [ Color.background red ]
-            , variation (Content (Just Yellow)) [ Color.background yellow ]
+            , variation (Content (Just Player2)) [ Color.background red ]
+            , variation (Content (Just Player1)) [ Color.background yellow ]
             ]
         , style BoardStyle
             [ Color.background blue

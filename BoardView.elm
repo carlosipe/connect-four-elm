@@ -6,45 +6,40 @@ import Styles exposing (..)
 import Model exposing (..)
 
 
-type alias FieldContent =
-    Maybe Player
+-- Change this by the real board
+
+
+drawableBoard =
+    [ [ Nothing, Nothing, Nothing ]
+    , [ Nothing, Nothing, Just Player1 ]
+    , [ Just Player2, Just Player2, Just Player1 ]
+    ]
 
 
 view : Model -> Element Styles FieldVariations msg
 view model =
-    let
-        width =
-            model.board.width
-
-        height =
-            model.board.width
-    in
-        column BoardStyle
-            []
-            (List.range 1 width
-                |> List.map (\_ -> boardRow model model.nextPlayer)
-            )
-
-
-boardRow : Model -> Player -> Element Styles FieldVariations msg
-boardRow model nextPlayer =
-    row NoStyle
-        [ padding 5, spacing 5 ]
-        (List.range 1 model.board.height
-            |> List.map (\_ -> boardField (fieldContent model 3) nextPlayer)
+    row BoardStyle
+        []
+        (drawableBoard
+            |> List.map
+                (\boardColumn ->
+                    column NoStyle
+                        []
+                        (boardColumn
+                            |> List.map
+                                (\fieldContent ->
+                                    boardField fieldContent model.nextPlayer
+                                )
+                        )
+                )
         )
 
 
-fieldContent : Model -> Int -> FieldContent
-fieldContent model position =
-    Nothing
-
-
-boardField : FieldContent -> Player -> Element Styles FieldVariations msg
-boardField content nextPlayer =
+boardField : Maybe Player -> Player -> Element Styles FieldVariations msg
+boardField fieldContent nextPlayer =
     el BoardField
         [ (vary (NextPlayer nextPlayer) True)
-        , (vary (Content content) True)
+        , (vary (Content fieldContent) True)
         , width (px 20)
         , height (px 20)
         ]

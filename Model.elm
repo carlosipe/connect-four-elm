@@ -10,12 +10,12 @@ type alias Model =
 
 initialModel : Model
 initialModel =
-    Model Red Nothing initialBoard
+    Model Player2 Nothing initialBoard
 
 
 type Player
-    = Red
-    | Yellow
+    = Player2
+    | Player1
 
 
 type alias Board =
