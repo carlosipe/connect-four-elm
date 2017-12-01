@@ -80,6 +80,7 @@ drawableBoard board =
             |> List.map
                 (\c ->
                     List.range 1 rows
+                        |> List.reverse
                         |> List.map
                             (\y ->
                                 getPosition board.plays ( c, y )
