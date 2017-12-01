@@ -18,4 +18,4 @@ type GameState
 
 initialModel : Model
 initialModel =
-    Model Player2 Playing Board.initialBoard
+    Model Player1 Playing Board.initialBoard
