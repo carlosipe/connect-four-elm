@@ -4,6 +4,7 @@ import Color exposing (red, yellow, blue, white, black)
 import Style exposing (..)
 import Style.Color as Color
 import Style.Border as Border
+import Style.Font as Font
 import Model exposing (..)
 import Player exposing (..)
 
@@ -12,6 +13,7 @@ type Styles
     = NoStyle
     | BoardStyle
     | BoardField
+    | HeaderStyle
 
 
 type FieldVariations
@@ -35,5 +37,13 @@ stylesheet =
             ]
         , style BoardStyle
             [ Color.background blue
+            ]
+        , style HeaderStyle
+            [ Font.size 24 -- all units given as px
+            , Font.typeface
+                [ Font.font "Helvetica"
+                , Font.font "Comic Sans"
+                , Font.font "Papyrus"
+                ]
             ]
         ]

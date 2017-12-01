@@ -11,9 +11,9 @@ import Msg exposing (Msg)
 
 view : Model -> Element Styles variation Msg
 view model =
-    column NoStyle
+    column HeaderStyle
         []
-        [ el NoStyle [] (text (headerText model.gameState model.currentPlayer))
+        [ el NoStyle [ padding 10 ] (text (headerText model.gameState model.currentPlayer))
         ]
 
 

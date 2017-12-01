@@ -13,12 +13,13 @@ import Player exposing (..)
 view : Model -> Element Styles FieldVariations Msg
 view model =
     row BoardStyle
-        []
+        [ spacing 5, padding 10, width (px 400) ]
         (Board.drawableBoard model.board
             |> List.indexedMap
                 (\columnNumber boardColumn ->
                     column NoStyle
                         [ onClick (Msg.Play (columnNumber + 1))
+                        , spacing 5
                         ]
                         (boardColumn
                             |> List.map
@@ -35,7 +36,7 @@ boardField fieldContent currentPlayer =
     el BoardField
         [ (vary (CurrentPlayer currentPlayer) True)
         , (vary (Content fieldContent) True)
-        , width (px 20)
-        , height (px 20)
+        , width (px 50)
+        , height (px 50)
         ]
         empty

@@ -20,7 +20,7 @@ type alias Position =
 
 initialBoard : Board
 initialBoard =
-    { dimensions = ( 10, 10 )
+    { dimensions = ( 7, 7 )
     , plays = Dict.empty
     }
 
